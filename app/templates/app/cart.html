@@ -1,0 +1,49 @@
+{% extends "app/layouts/main.html" %}
+{% block content %}
+
+      
+    <div class="container">
+        <div class="content-box" style="display: flex-wrap;  flex-wrap: wrap; gap: 50px; align-items: inline; left: 20px;">
+            {% csrf_token %}
+            {% if cart %}
+                {% for item in cart %}
+                    <div class="row_product_data" id="align" style="display: flex; align-items: center; margin-right: 20px; column-gap: 10px;">
+                        <div class="col-md-2 my-auto">
+                            <img src="{{item.product.product_image.url}}" height="20px" width="20px" alt="image here">
+                        </div>
+                        <div class="col-md-3 my-auto">
+                            <h6>{{item.product.name}}</h6>
+                        </div>
+                        <div class="col-md-2 my-auto">
+                            <h6>Rs{{item.product.selling_price}}</h6>
+                        </div>
+                        <div class="col-md-3 my-auto">
+                            <input type="hidden" class="product_id" value="{{item.product_id}}">
+                            {% if item.product.quantity >= item.product_qty %}
+                                <label for="Quantity">Quantity</label>
+                              
+                          
+                            {% else %}
+                            <div class="input-group text-center mb-3">
+                                <a href="{% url 'proced' %}"><button onclick="" id="btn1">Proceed</button></a>
+                            </div>
+                                
+                            {% endif %}
+                        </div>
+                        <div class="col-md-2 my-auto">
+                            <button onclick="removeCartItem(this)" class="btn btn-danger delete-cart-item" id="btn3">Remove</button>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h4>Your cart is empty</h4>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+  
+
+
+{% endblock %}
+

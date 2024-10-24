@@ -1,0 +1,83 @@
+
+{% extends "app/layouts/main.html" %}
+ 
+{% load static %}
+
+{%block content%}
+<div class="cartitems" id="cartitems">
+    <div class="cartitems-format-main" id="items">
+        <p>Products</p>
+        <p>Title</p>
+        <p>Price</p>
+        <p>Quantity</p>
+        <p>Total</p>
+        <p>Remove</p>
+    </div>
+    <hr />
+    {% for item in cart_items %}
+        <div class="cartitems-format cartitems-format-main">
+            <img src=" {{item.product.product_image.url}} " alt="" class="carticon-product-icon" />
+            <p>{{ item.product.name }}</p>
+            <p>${{ item.product.selling_price }}</p>
+            <button class="cartitems-quantity">{{ item.quantity }}</button>
+            <p>${{ item.total_price }}</p>
+            <a href="{% url 'remove_from_cart' item.product.id %}">
+                <img class="cartitems-remove-icon" src="{% static 'path/to/remove_icon.png' %}" alt="" />
+            </a>
+
+        </div>
+        <div class="col-md-3">
+            <div class ="card">
+               <a href="{% url 'collectionsview' item.slug %}">
+                   <div class ="card-body">
+                       <div class="category-image">
+                          <img src="{{item.image.url}}"alt="Category image" height="200px" width="200px"></img>
+                        </div>
+                        <h4 class="text-center">{{item.name}}</h4>
+                   </div>
+               </a>
+           </div>
+        <hr />
+    {% endfor %}
+    <div class="cartitems-down">
+        <div class="cartitems-total">
+            <h1>Cart Totals</h1>
+            <div>
+                <div class="cartitems-total-item">
+                    <p>Subtotal</p>
+                    <p>${{ total_amount }}</p>
+                </div>
+                <hr />
+                <div class="cartitems-total-item">
+                    <p>Shipping Fee</p>
+                    <p>Free</p>
+                </div>
+                <hr />
+                <div class="cartitems-total-item">
+                    <h3>Total</h3>
+                    <h3>${{ total_amount }}</h3>
+                </div>
+            </div>
+            <button>PROCEED TO CHECKOUT</button>
+        </div>
+        <div class="cartitems-promocode">
+            <p>If you have a promo code, enter it here</p>
+            <div class="cartitems-promobox">
+                <input type="text" placeholder="promo code" />
+                <button>Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 
+              
+                            
+                              
+                            
+                    
+
+    
+  
+
+{% endblock %}

@@ -1,0 +1,60 @@
+<nav class="navbar py-3 bg-primary navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+      <img id="img" src="https://tse4.mm.bing.net/th?id=OIP.dSc6UYZ7ZUZQbawzeJCLngHaFD&pid=Api&P=0&h=180" alt="" height="50px" width="50px"/>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                  <a class="nav-link {% if request.resolver_match.url_name == 'first' %} active {% endif %}" href="{% url 'first' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link {% if request.resolver_match.url_name == 'collections' %} active {% endif %}" href="{% url 'collections' %}">Collections</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link {% if request.resolver_match.url_name == 'cart' %} active {% endif %} " href="{% url 'cart' %}">Cart</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if request.resolver_match.url_name == 'wishlist' %} active {% endif %} " href="{% url 'wishlist' %}">Whishlist</a>
+            </li>
+              
+              {% if request.user.is_authenticated %}
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{ request.user }}
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="{% url 'logout' %}" method="post">Logout</a></li>
+                  </ul>
+              </li>
+              {% else %}
+             
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'loginpage' %}">Login</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'register' %}">Register</a>
+              </li>
+              {% endif %}
+          </ul>
+          <a href="{% url 'cart' %}">
+              <img class="cart" src="https://www.pngall.com/wp-content/uploads/5/Shopping-Cart-PNG-Image-HD.png">
+          </a>
+      </div>
+  </div>
+</nav>
+<div id="marquee">
+  <marquee behaviour="absolute"><h6>welcome to fasshion word   helpline:+91  92949 93933 9992 </h6></marquee>
+</div>
+<script src="https://kit.fontawesome.com/073f66530f.js" crossorigin="anonymous"></script>
+<div class="divsecond">
+  <div class="div1">Trending colections &nbsp;&nbsp;&nbsp; contact +91 4867863818</div>
+  <div class="div2"> <a href="https://www.facebook.com/login/"><i class="fa-brands fa-square-facebook"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <a href="https://x.com/i/flow/login"><i class="fa-brands fa-square-twitter"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <a href="https://www.linkedin.com/company/login"></a> <i class="fa-brands fa-linkedin"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+     <a href="https://www.instagram.com/accounts/login/"> <i class="fa-brands fa-instagram"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>   
+</div>
